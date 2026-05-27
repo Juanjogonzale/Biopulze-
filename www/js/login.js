@@ -38,7 +38,7 @@ loginForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   try {
-    const res = await fetch("/login", {
+    const res = await fetch("https://biopulze.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -77,7 +77,7 @@ loginVerifyForm.addEventListener("submit", async (e) => {
   }
 
   try {
-    const res = await fetch("/login/verify", {
+    const res = await fetch("https://biopulze.onrender.com/login/verify", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -112,7 +112,7 @@ forgotForm.addEventListener("submit", async (e) => {
     return;
   }
   try {
-    const res = await fetch("/forgot-password", {
+    const res = await fetch("https://biopulze.onrender.com/forgot-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ correo: email })
@@ -142,7 +142,7 @@ resetForm.addEventListener("submit", async (e) => {
     return;
   }
   try {
-    const res = await fetch("/reset-password", {
+    const res = await fetch("https://biopulze.onrender.com/reset-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -187,7 +187,7 @@ document.getElementById("btnLoginResendCode")?.addEventListener("click", async (
   btn.disabled = true;
   btn.textContent = "Enviando...";
   try {
-    const res = await fetch("/login/resend-code", {
+    const res = await fetch("https://biopulze.onrender.com/login/resend-code", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ correo: loginCorreoPendiente })

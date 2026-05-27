@@ -24,7 +24,7 @@ registerForm.addEventListener("submit", async (e) => {
   }
 
   try {
-    const res = await fetch("/register", {
+    const res = await fetch("https://biopulze.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -82,7 +82,7 @@ document.getElementById("btnResendCode")?.addEventListener("click", async () => 
   btn.disabled = true;
   btn.textContent = "Enviando...";
   try {
-    const res = await fetch("/register/resend-code", {
+    const res = await fetch("https://biopulze.onrender.com/register/resend-code", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ correo: correoPendiente })
@@ -114,7 +114,7 @@ verifyForm.addEventListener("submit", async (e) => {
   }
 
   try {
-    const res = await fetch("/register/verify", {
+    const res = await fetch("https://biopulze.onrender.com/register/verify", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

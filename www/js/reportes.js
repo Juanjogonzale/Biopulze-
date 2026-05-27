@@ -1,4 +1,4 @@
-const REPORTES_API_URL = "/equipos";
+const REPORTES_API_URL = "https://biopulze.onrender.com/equipos";
 let ultimosReportes = [];
 
 function parseISODate(str) {
