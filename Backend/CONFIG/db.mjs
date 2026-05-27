@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 
 const isTest = process.env.NODE_ENV === "test";
 
@@ -14,12 +13,20 @@ if (isTest) {
 
   const mysql = await import("mysql2");
 
+  const dbHost = process.env.MYSQLHOST || process.env.DB_HOST;
+  const dbPort = Number(process.env.MYSQLPORT || process.env.DB_PORT) || 3306;
+  const dbUser = process.env.MYSQLUSER || process.env.DB_USER || "root";
+  const dbName = process.env.MYSQL_DATABASE || process.env.DB_NAME;
+
+  // Debug info (avoid printing password in logs)
+  console.log("MySQL config:", { host: dbHost, port: dbPort, user: dbUser, database: dbName });
+
   db = mysql.default.createPool({
-    host: process.env.MYSQLHOST || process.env.DB_HOST,
-    port: Number(process.env.MYSQLPORT || process.env.DB_PORT) || 3306,
-    user: process.env.MYSQLUSER || process.env.DB_USER || "root",
+    host: dbHost,
+    port: dbPort,
+    user: dbUser,
     password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
-    database: process.env.MYSQL_DATABASE || process.env.DB_NAME,
+    database: dbName,
     charset: "utf8mb4",
 
     waitForConnections: true,
