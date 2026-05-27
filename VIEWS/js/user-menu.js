@@ -36,7 +36,7 @@
   }
 
   function loadProfile() {
-    fetch("/me", { headers: authHeaders() })
+    fetch("https://biopulze.onrender.com/me", { headers: authHeaders() })
       .then((r) => r.json())
       .then((data) => {
         if (data.mensaje && !data.nombre) {
@@ -138,7 +138,7 @@
         return;
       }
 
-      fetch("/user/profile", {
+      fetch("https://biopulze.onrender.com/user/profile", {
         method: "PUT",
         headers: authHeaders(),
         body: JSON.stringify(payload)

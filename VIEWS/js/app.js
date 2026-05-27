@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const API_URL = "";
+    const API_URL = "https://biopulze.onrender.com";
 
     const homeCard = document.getElementById("homeCard");
     const loginCard = document.getElementById("loginCard");

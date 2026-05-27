@@ -1,6 +1,6 @@
 const form = document.getElementById("equipoForm");
-const API_URL = "/equipos";
-const AUDIT_URL = "/audit/equipos";
+const API_URL = "https://biopulze.onrender.com/equipos";
+const AUDIT_URL = "https://biopulze.onrender.com/audit/equipos";
 
 const tabBtnEquipos = document.getElementById("tabBtnEquipos");
 const tabBtnHistorial = document.getElementById("tabBtnHistorial");
