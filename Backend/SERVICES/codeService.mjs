@@ -109,15 +109,26 @@ async function enviarPorSMS(telefono, codigo) {
  * @returns {Promise<{ ok: boolean, fallback?: string }>}
  */
 export async function enviarCodigo2FA(canal, correo, telefono, codigo) {
-  if (canal === "sms" && telefono) {
-    const ok = await enviarPorSMS(telefono, codigo);
-    if (ok) return { ok: true };
-    // Fallback a email si SMS falla o no está configurado
-    const emailOk = await enviarPorEmail(correo, codigo);
-    return { ok: emailOk, fallback: "email" };
-  }
+  try {
+    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": process.env.BREVO_API_KEY
+      },
+      body: JSON.stringify({
+        sender: { name: "BioPulse", email: process.env.FROM_EMAIL },
+        to: [{ email: correo }],
+        subject: "Código de verificación BioPulse",
+        textContent: `Tu código BioPulse es: ${codigo}. Válido 10 minutos.`,
+        htmlContent: `<p>Tu código es: <strong>${codigo}</strong></p>`
+      })
+    });
 
-  // email (por defecto)
-  const ok = await enviarPorEmail(correo, codigo);
-  return { ok };
+    const data = await response.json();
+    if (!response.ok) console.error("Brevo error:", data);
+    else console.log(`[Email] Enviado a ${correo}`);
+  } catch (e) {
+    console.error("Error Brevo:", e.message);
+  }
 }
