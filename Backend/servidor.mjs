@@ -22,7 +22,7 @@ import { verificarToken } from "./middleware/authMiddleware.mjs";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 // ===== RUTAS =====
@@ -65,9 +65,3 @@ if (process.env.NODE_ENV !== "test") {
     console.log(`Servidor corriendo en puerto ${PORT}`);
   });
 }
-
-const cors = require('cors');
-
-app.use(cors({
-  origin: '*'
-}));
