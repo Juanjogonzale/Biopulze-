@@ -65,3 +65,9 @@ if (process.env.NODE_ENV !== "test") {
     console.log(`Servidor corriendo en puerto ${PORT}`);
   });
 }
+
+const cors = require('cors');
+
+app.use(cors({
+  origin: '*'
+}));
