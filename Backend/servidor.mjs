@@ -4,8 +4,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
-dotenv.config();
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // CONFIGURACIONES
@@ -24,6 +22,10 @@ const app = express();
 
 app.use(cors({ origin: '*' }));
 app.use(express.json());
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 // ===== RUTAS =====
 app.post("/register", register);
